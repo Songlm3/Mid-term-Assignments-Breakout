@@ -8,7 +8,7 @@
 
 [开源仓库链接](https://github.com/Songlm3/Mid-term-Assignments-Breakout.git)
 
-[中文版](https://github.com/Songlm3/Mid-term-Assignments-Breakout/report/report-Chinese.md)
+[中文版](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/report-Chinese.md)
 
 ## 【Brief Introduction】
 
@@ -42,7 +42,7 @@ There are 8 rows of bricks in total, and each two rows of bricks have different 
 
 **The current behavior affects the data received subsequently**: The reason why this feature is proposed separately is also to distinguish it from supervised learning and semi-supervised learning. In supervised learning and semi-supervised learning, each training data is independent and has no relationship with each other. But this is not the case in reinforcement learning. The current state and the actions taken will affect the state received in the next step. There is a certain correlation between data and data.
 
-![Schematic Diagram of Reinforcement Learning](.\img\强化学习示意图.png)
+[![Schematic Diagram of Reinforcement Learning](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%A4%BA%E6%84%8F%E5%9B%BE.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 
 ### 2 Q-learning
 
@@ -60,7 +60,7 @@ $$
 Multiply the maximum $Q (s', a ') $value in the next state s' by the decay γ In addition, the true return value is the most realistic for Q, and the $Q (s, a) $in the past Q table is used as the Q estimate.
 Q-learning's algorithm process:
 
-![20190813042131233](.\img\20190813042131233.png)
+[![20190813042131233](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/20190813042131233.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/20190813042131233.png)
 
 ### 3 DQN（Deep Q Network）
 
@@ -89,8 +89,7 @@ Experience replay: we store the agent's experience at each time step in the data
 
 Another innovation of this paper is that instead of using only one neural network for training, two neural networks with identical structures are designed, namely, the target network (Q target) and the evaluation network (Q predicate). But the parameters used in Q-target network are old ones, while those used in Q-predicate network are new ones. In the training process, the parameters of Q-predicate are constantly updated and optimized, and the parameters of the evaluation network are only assigned to Q-target at a certain interval. Q predicate gives the predicted $q_{value}$ according to the input state $s$. Q target gives $q_{next}$ according to the input of $s_{next}$. Then substitute $q_{next}$ into the core recursive formula of Q-learning to get $q_{target}$. Finally, $loss(q_{value},q_{target})$ back-propagates and optimizes the parameters to continuously get a better neural network, so after repeated training and optimization, the agent can basically master the action decisions under various states.
 
-Pseudocode:
-![cac90d2965a344e5aa935fd2cac586a7](.\img\cac90d2965a344e5aa935fd2cac586a7.jpg)
+Pseudocode:[![cac90d2965a344e5aa935fd2cac586a7](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/cac90d2965a344e5aa935fd2cac586a7.jpg)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/cac90d2965a344e5aa935fd2cac586a7.jpg)
 
 #### 3.3 Nature DQN
 
@@ -108,14 +107,14 @@ r_j+γ max_{a'}Q(Ø_j,a_j;\theta')& \text{for non-terminal }Ø_{j+1}
 $$
 ​The rest are identical to DQN.
 
-![bf6c2a8642cc4ecf9d3d06ef241c0d01](.\img\bf6c2a8642cc4ecf9d3d06ef241c0d01.png)
+[![bf6c2a8642cc4ecf9d3d06ef241c0d01](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/bf6c2a8642cc4ecf9d3d06ef241c0d01.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/bf6c2a8642cc4ecf9d3d06ef241c0d01.png)
 
 In the Breakout game of this question, the input image is 210 * 160 * 3. We will process it slightly. After removing the unnecessary pixels on the edge, we will reduce the order of sampling to grayscale, and take the 84 * 84 * 4 image as the input of the algorithm.
 
 The input of the neural network is not a single frame image, but the latest four consecutive frames. This is also easy to understand, because it adds time series. For the brick playing game, if only one frame is used as input, although the bricks are in the same position, they may move in several directions, and the agent cannot judge its value. But if we add the last few frames, the agent can judge which direction it is moving according to the time before and after, and the state is complete.
 The following figure shows the processing structure of graph using convolutional neural network:
 
-![flow_chart](.\img\flow_chart.png)
+[![flow_chart](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/flow_chart.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/flow_chart.png)
 
 ### 4 Code Structure
 
@@ -348,11 +347,11 @@ The only difference in the code is that when calculating the target Q value, the
 
 Dueling DQN algorithm proposes a new neural network structure - duel network. The input of the network is the same as the input of DQN and DDQN algorithms, which are state information, but the output is different. The output of Dueling DQN algorithm includes two branches, namely, the state value V (scalar) of the state and the dominant value A (vector with the same dimension as the action space) of each action. The output of DQN and DDQN algorithms has only one branch, which is the action value of each action in this state (a vector with the same dimension as the action space). The specific network structure is shown in the figure below:
 
-![6-1](.\img\6-1.png)
+[![6-1](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-1.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-1.png)
 
 ​                                Single branch network structure (DQN and DDQN)
 
-![6-2](.\img\6-2.png)
+[![6-2](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-2.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-2.png)
 
 ​                                                                Dueling DQN
 
@@ -408,25 +407,25 @@ class Dueling-DQN(nn.Module):
 
 I did 50 million iterations of each of the three methods and plotted the results in a line graph.
 
-[DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/dqn-breakout/DQN-500.mp4)
+[DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/dqn-breakout/DQN-500.mp4)
 
-![DQN](.\img\DQN.png)
+[![DQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DQN.png)
 
 The data after 30 million times is relatively stable. Compared with DQN, the reward of DDQN is more stable, and can almost reach more than 400 when approaching 50 million times.
 
-[DDQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/double-dqn-breakout/DDQN-501.mp4)
+[DDQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/double-dqn-breakout/DDQN-501.mp4)
 
-![DDQN](.\img\DDQN.png)
+[![DDQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DDQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DDQN.png)
 
 Dueling-DQN has gradually stabilized at around 400 as it approaches 20 million times, and you can see that it is significantly better than the first two methods.
 
-[Dueling-DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/dueling-dqn-breakout/Dueling-DQN-501.mp4)
+[Dueling-DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/dueling-dqn-breakout/Dueling-DQN-501.mp4)
 
-![DuelingDQN](.\img\DuelingDQN.png)
+[![DuelingDQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DuelingDQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DuelingDQN.png)
 
 When the results of the three methods are plotted on a graph, it can be seen that the results of Dueling-DQN are better.
 
-![pic](.\img\pic.png)
+[![pic](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/pic.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/pic.png)
 
 ## 【Reference】
 
@@ -439,3 +438,4 @@ When the results of the three methods are plotted on a graph, it can be seen tha
 [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)
 
 [Dueling Network Architectures for Deep Reinforcement Learning](https://arxiv.org/abs/1509.06461)
+

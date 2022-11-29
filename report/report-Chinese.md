@@ -14,7 +14,7 @@
 
 [开源仓库链接](https://github.com/Songlm3/Mid-term-Assignments-Breakout.git)
 
-[英文版](https://github.com/Songlm3/Mid-term-Assignments-Breakout/README.md)
+[英文版](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/report-English.md)
 
 ## 【简要介绍】
 
@@ -48,7 +48,7 @@
 
 **当前的行为影响后续接收到的数据**：为什么单独把该特点提出来，也是为了和监督学习&半监督学习进行区分。在监督学习&半监督学习中，每条训练数据都是独立的，相互之间没有任何关联。但是强化学习中并不是这样，当前状态以及采取的行动，将会影响下一步接收到的状态。数据与数据之间存在一定的关联性。
 
-![强化学习示意图](.\img\强化学习示意图.png)
+[![Schematic Diagram of Reinforcement Learning](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%A4%BA%E6%84%8F%E5%9B%BE.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 
 ### 2 Q-learning
 
@@ -66,7 +66,7 @@ $$
 
 Q-learning算法流程：
 
-![20190813042131233](.\img\20190813042131233.png)
+[![20190813042131233](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/20190813042131233.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/20190813042131233.png)
 
 ### 3 DQN（Deep Q Network）
 
@@ -98,7 +98,7 @@ Q-learning算法很早就有了，但是其与深度学习的结合是在2013年
 该论文的另一个创新点在于没有只采用一个神经网络进行训练，而是设计了两个结构完全相同的神经网络，分别为目标网络（Q-target）和评估网络（Q-predict），但Q-target网络中采用的参数是旧参数，而Q-predict网络中采用的参数是新参数。在训练过程中，Q-predict的参数不断地更新优化，只在一定间隔时间点将评估网络的参数赋给Q-target。Q-predict根据输入的$s$状态给出预测的$q_{value}$，Q-target根据$s_{next}$的输入给出$q_{next}$，再将$q_{next}$代入Q-learning的核心递推式中可以得到$q_{target}$，最后 $loss(q_{value},q_{target})$ 反向传播并优化参数即可不断地得到更好的神经网络，这样经过反复的训练优化后，智能体基本可以掌握各种状态下的action决策。
 
 DQN伪代码：
-![cac90d2965a344e5aa935fd2cac586a7](.\img\cac90d2965a344e5aa935fd2cac586a7.jpg)
+[![cac90d2965a344e5aa935fd2cac586a7](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/cac90d2965a344e5aa935fd2cac586a7.jpg)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/cac90d2965a344e5aa935fd2cac586a7.jpg)
 
 #### 3.3 Nature DQN
 
@@ -113,7 +113,7 @@ r_j+γ max_{a'}Q(Ø_j,a_j;\theta')& \text{for non-terminal }Ø_{j+1}
 $$
 ​    其余的和DQN完全相同。
 
-![bf6c2a8642cc4ecf9d3d06ef241c0d01](.\img\bf6c2a8642cc4ecf9d3d06ef241c0d01.png)
+[![bf6c2a8642cc4ecf9d3d06ef241c0d01](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/bf6c2a8642cc4ecf9d3d06ef241c0d01.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/bf6c2a8642cc4ecf9d3d06ef241c0d01.png)
 
 本题的Breakout游戏的中，输入是210 * 160 * 3的图像，我们稍作处理，把边上不需要的像素去掉之后降阶采样灰度化，将84 * 84 * 4的图像作为算法的输入
 
@@ -121,7 +121,7 @@ $$
 
 下图显示了使用卷积神经网络对于图形的处理结构：
 
-![flow_chart](.\img\flow_chart.png)
+[![flow_chart](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/flow_chart.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/flow_chart.png)
 
 ### 4 代码结构分析
 
@@ -357,11 +357,11 @@ $$
 
 Dueling DQN算法提出了一种新的神经网络结构——对偶网络(duel network)。网络的输入与DQN和DDQN算法的输入一样，均为状态信息，但是输出却有所不同。Dueling DQN算法的输出包括两个分支，分别是该状态的状态价值V(标量)和每个动作的优势值A(与动作空间同维度的向量)。DQN和DDQN算法的输出只有一个分支，为该状态下每个动作的动作价值(与动作空间同维度的向量)。具体的网络结构如下图所示：
 
-![6-1](.\img\6-1.png)
+[![6-1](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-1.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-1.png)
 
 ​                                                     单分支网络结构(DQN和DDQN)
 
-![6-2](.\img\6-2.png)
+[![6-2](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-2.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/6-2.png)
 
 ​                                                    对偶网络结构(Dueling DQN)
 
@@ -417,25 +417,25 @@ class Dueling-DQN(nn.Module):
 
 分别对三种方法进行了5000万次的迭代实验，将得出的rewards绘制成折线图
 
-[DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/dqn-breakout/DQN-500.mp4)
+[DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/dqn-breakout/DQN-500.mp4)
 
-![DQN](.\img\DQN.png)
+[![DQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DQN.png)
 
 3000万次之后的数据较为稳定，相较于DQN，DDQN的更加稳定，并且接近5000万时几乎都能达到400以上
 
-[DDQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/double-dqn-breakout/DDQN-501.mp4)
+[DDQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/double-dqn-breakout/DDQN-501.mp4)
 
-![DDQN](.\img\DDQN.png)
+[![DDQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DDQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DDQN.png)
 
 DuelingDQN在接近2000万次时就已经逐渐稳定在400上下，可以看到它明显优于前两种方法
 
-[Dueling-DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/dueling-dqn-breakout/Dueling-DQN-501.mp4)
+[Dueling-DQN's video](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/dueling-dqn-breakout/Dueling-DQN-501.mp4)
 
-![DuelingDQN](.\img\DuelingDQN.png)
+[![DuelingDQN](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DuelingDQN.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/DuelingDQN.png)
 
 将三种方法的结果绘制在一张图上，可以看到，Dueling-DQN的效果更好。
 
-![pic](.\img\pic.png)
+[![pic](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/pic.png)](https://github.com/Songlm3/Mid-term-Assignments-Breakout/blob/master/report/img/pic.png)
 
 生成的mp4附在了代码文件夹内
 
